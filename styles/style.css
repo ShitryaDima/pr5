@@ -1,0 +1,84 @@
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+.body {
+    font-family: 'Roboto', system-ui, sans-serif;
+   }
+
+.header {
+    justify-content: space-between;
+    padding: 1rem;
+    background: #fff;
+}
+
+.header__logo {
+    display: inline;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.header__nav {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+}
+
+.nav__link {
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+.nav__link:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-1px);
+}
+.nav__link:focus {
+    outline: 2px solid #2c5530;
+    outline-offset: 2px;
+}
+.nav__link:active {
+    transform: translateY(0);
+}
+
+.section {
+    padding: 3rem 5rem;
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+   }
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.button {
+    background-color: #74747436;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background-color: #6b4779;
+    transform: scale(1.05);
+}
+
+.button:active {
+    transform: scale(0.98);
+}
+
+.button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+   
