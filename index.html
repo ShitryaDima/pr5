@@ -9,15 +9,29 @@
 </head>
 <body class="body">
     <header class="header">
+        <div class="nav-overlay"></div>
         <div class="header__top">
-            <img class="header__search-icon" src="assets/icons/Search.png" alt="">
+            <img class="header__search-icon icon" src="assets/icons/Search.png" alt="">
             <h1 class="header__logo">Мебель</h1>
             <div class="header__right-icons">
                 <img class="header__cart-icon" src="assets/icons/Shopping_cart.png" alt="">
                 <img class="header__avatar-icon" src="assets/icons/User_avatar.png" alt="">
             </div>
+            <!-- Гамбургер-кнопка (видна на планшетах и мобильных) -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Открыть
+            меню" aria-expanded="false">
+                <span class="menu-toggle__line"></span>
+                <span class="menu-toggle__line"></span>
+                <span class="menu-toggle__line"></span>
+            </button>
         </div>
-        <nav class="header__nav nav">
+
+  
+        <nav class="header__nav nav" id="mainNav">
+            <div class="nav__mobile-icons">
+                <img src="assets/icons/Shopping_cart.png" alt="Корзина">
+                <img src="assets/icons/User_avatar.png" alt="Профиль">
+            </div>  
             <a class="nav__link" href="#features">Преимущества</a>
             <a class="nav__link" href="#ceramic">Керамика</a>
             <a class="nav__link" href="#popular">Популярное</a>
@@ -124,5 +138,10 @@
     <footer class="footer">
         <p class="footer__text">Подвал</p>
     </footer>
+    <!-- Кнопка "Наверх" -->
+    <button class="scroll-top" id="scrollTop" aria-label="Наверх">
+    ↑
+    </button>
+    <script src="scripts/menu.js"></script>
 </body>
 </html>

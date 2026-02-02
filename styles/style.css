@@ -1,6 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-*, ::before, ::after {
+:root {
+    --primary-color: #393166; /* Твой основной фиолетовый цвет */
+    --secondary-color: #f0f0f0;
+    --text-color: #333;
+    --font-family: 'Roboto', sans-serif;
+    --transition: all 0.3s ease;
+}
+
+*,
+::before,
+::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -9,7 +19,10 @@
 .body {
     font-family: 'Roboto', system-ui, sans-serif;
     line-height: 150%;
-   }
+    font-size: 16px;
+    /* Минимум для MD */
+    color: var(--text-color);
+}
 
 .header {
     justify-content: space-between;
@@ -63,6 +76,68 @@
     transform: translateY(0);
 }
 
+/* Стили для оверлея (который создает JS) */
+.nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    z-index: 1000;
+}
+
+.nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Скрываем мобильные иконки в навигации по умолчанию */
+.nav__mobile-icons {
+    display: none;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* Гамбургер-кнопка (скрыта на десктопе) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: none;
+    padding: 12px 10px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.menu-toggle__line {
+    width: 100%;
+    height: 3px;
+    background: var(--text-color);
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+/* Состояние открытого меню */
+.menu-toggle.active .menu-toggle__line:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.menu-toggle.active .menu-toggle__line:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active .menu-toggle__line:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+
 .section {
     margin-bottom: 100px;
     margin-left: 10%;
@@ -78,8 +153,8 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 4rem 3rem;
-    background-color:#393166;
-    color:white;
+    background-color: #393166;
+    color: white;
 }
 
 .preview__title {
@@ -116,7 +191,7 @@
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .product-card {
@@ -166,7 +241,7 @@
     cursor: not-allowed;
     transform: none;
 }
-   
+
 .mailing {
     background-color: rgb(245, 245, 245);
     padding: 3rem;
@@ -176,9 +251,9 @@
     background-color: white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center;    
     text-align: center;
-    padding: 3rem 8rem; 
+    padding: 10% 20%;
 }
 
 .mailing__title {
@@ -213,15 +288,55 @@
     max-height: 400px;
 }
 
+/* Кнопка "Наверх" */
+.scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 56px;
+    height: 56px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-top:hover {
+    background: #1e3a23;
+    transform: scale(1.1);
+}
+
+.scroll-top:active {
+    transform: scale(0.95);
+}
+
+
 /* Ноутбуки (меньше 1200px) */
 @media (max-width: 1199px) {
     .products__container {
         justify-content: center;
         gap: 3rem;
-}
+    }
+
     .about-service__image {
         display: none;
     }
+
     .preview__image {
         display: none;
     }
@@ -232,13 +347,74 @@
     img {
         max-width: 400px;
     }
+
     p {
-    color: royalblue;
+        color: royalblue;
     }
+
     .header__nav {
         flex-direction: column;
         text-align: center;
-    } 
+    }
+
+    .scroll-top {
+        width: 52px;
+        height: 52px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 22px;
+    }
+
+    .header {
+        position: sticky;
+        top: 0;
+        z-index: 1002;
+        background: #fff;
+    }
+
+    .header__top {
+        padding: 15px 20px;
+    }
+
+    /* Скрываем обычные иконки */
+    .header__right-icons {
+        display: none;
+    }
+
+    /* Показываем кнопку бургера */
+    .menu-toggle {
+        display: flex;
+        justify-self: end;
+    }
+
+    /* Стили для выпадающего меню */
+    .header__nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        /* Спрятано справа */
+        width: 70%;
+        height: 100vh;
+        background: white;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 80px 20px;
+        transition: var(--transition);
+        z-index: 1001;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .header__nav.active {
+        right: 0;
+        /* Показываем */
+    }
+
+    .nav__mobile-icons {
+        display: flex;
+        /* Показываем иконки внутри меню */
+    }
+
 }
 
 /* Мобильные (меньше 576px) */
@@ -247,6 +423,7 @@
         color: dodgerblue;
         font-size: 16px;
     }
+
     img {
         max-width: 200px;
     }
